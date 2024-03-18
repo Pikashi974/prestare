@@ -1,10 +1,17 @@
 import React, { useContext } from "react";
-import { AreaContext, JobContext, SearchInputContext } from "./App.tsx";
+import {
+  AreaContext,
+  JobContext,
+  JobListContext,
+  SearchInputContext,
+} from "./App.tsx";
 
 export default function Form() {
-  const { searchInput, setSearchInput } = useContext(SearchInputContext);
+  const { setSearchInput } = useContext(SearchInputContext);
   const { area, setArea } = useContext(AreaContext);
-  const { job, setJob } = useContext(JobContext);
+  const { setJob } = useContext(JobContext);
+  const { jobList } = useContext(JobListContext);
+
   return (
     <form className=" max-w-md my-8 mx-auto">
       <label className="input input-bordered flex items-center gap-2">
@@ -110,12 +117,10 @@ export default function Form() {
             setJob(e.currentTarget.value);
           }}
         >
-          <option disabled selected hidden>
-            Domaine
-          </option>
-          <option>Designer</option>
-          <option>Developer</option>
-          <option>Manager</option>
+          <option selected>Tout</option>
+          {jobList.map((element) => {
+            return <option value={element.name}>{element.name}</option>;
+          })}
         </select>
       </div>
     </form>

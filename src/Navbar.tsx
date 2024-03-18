@@ -90,14 +90,16 @@ export default function Navbar({
         ) : (
           <ul tabIndex={0} className="menu menu-horizontal">
             <li>
-              <a href="/" className="text-white text-lg">
-                Connexion
-              </a>
-            </li>
-            <li>
-              <a href="/" className="text-white text-lg">
-                Inscription
-              </a>
+              <p
+                onClick={() =>
+                  (
+                    document.getElementById("my_modal_1") as HTMLDialogElement
+                  ).showModal()
+                }
+                className="text-white text-lg"
+              >
+                Connexion/Inscription
+              </p>
             </li>
           </ul>
         )}
